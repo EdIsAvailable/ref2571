@@ -1,22 +1,29 @@
+#include <cstdio>
 #include<iostream>
-#include <vector>
-#include <string>
 #include "Acc.h"
+#include "Socket.h"
 #include "Chat.h"
 #include "Server.h"
+#include "db.h"
+#include "NewUser.h"
+
+
 using namespace std;
 
 Server* _server;
-
+//Driver* driver;
 int main()
 {
-	//setlocale(LC_ALL, "ru_RU.UTF-8");
+    //registerUser("Alice", "default_hash");
+    //registerUser("Bob", "default_hash");
 
-	_server = new Server();
-	_server->MainProcess();
+    //saveMessage("Alice", "Bob", "Hello, Bob!");
+    //fetchMessages("Bob");
 
-	return 0;
-};
+    _server = new Server();
+    _server->MainProcess();
 
-
+    delete _server; //  освободить память
+    return 0;
+}
 

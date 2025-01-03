@@ -1,5 +1,5 @@
 #include "Server.h"
-
+#include "UserRepository.h"
 Server::Server()
 {
 	_userRepo = new UserRepository();
@@ -49,8 +49,24 @@ void Server::MainProcess()
 		cout << endl;
 	} while (process);
 };
+Acc* Server::ProcessAuthorization() 
+{
+	std::string login; // Получите логин от пользователя
+	std::string password; // Получите пароль от пользователя
 
-Acc* Server::ProcessAuthorization()
+	Acc* user = _userRepo->AuthorizeUser(login, password); // Предполагается, что вы получаете логин и пароль
+	if (user) {
+		_msgRepo->ViewMessagesForUser(user->getLogin()); // Передаем логин
+		_msgRepo->ViewMessagesForAllUsers(); // Вызываем без аргументов
+	}
+	else {
+		std::cout << "Ошибка авторизации." << std::endl;
+	}
+
+	return user; // Возвращаем указатель на пользователя
+}
+
+/*Acc* Server::ProcessAuthorization()
 {
 	string login, pwd;
 	std::cout << "введите логин " << endl;
@@ -70,7 +86,7 @@ Acc* Server::ProcessAuthorization()
 	_msgRepo->ViewMessagesForAllUsers(user);
 	return user;
 }
-
+*/
 void Server::ProcessChat(Acc* user)
 {
 	string text; // Тело сообщения для отправки

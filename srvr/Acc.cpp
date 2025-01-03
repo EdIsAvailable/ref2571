@@ -3,7 +3,8 @@
 #include<algorithm>
 using namespace std;
 
-Acc::Acc(string& login, string& pswd, string& name) : NewUser(login)
+
+Acc::Acc(const std::string& login, const std::string& pswd, const std::string& name) : NewUser(login) //Acc::Acc(string& login, string& pswd, string& name) : NewUser(login)
 {
 	this->setPswd(pswd);
 	_name = name;
@@ -25,7 +26,7 @@ void Acc::setPswd(const string pwd)
 	}
 	_pswd = pwd;
 }
-bool Acc::CheckPassword(string& pwd)
+bool Acc::CheckPassword(const std::string& pwd)
 {
 	return _pswd == pwd; // Проверить пароль пользователя, верный или нет
 }

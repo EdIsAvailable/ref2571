@@ -14,5 +14,3 @@ public:  UserRepository();
 		void UsersList(void); // Вывод списка зарегистрированных пользователей
 		~UserRepository();
 };
-
-
